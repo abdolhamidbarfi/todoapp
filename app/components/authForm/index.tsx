@@ -5,17 +5,12 @@ import Input from "../input"
 
 interface AuthFormInterface {
     title: string,
-    name?: InputInterface
-    email: InputInterface
-    password: InputInterface
+    data: InputInterface[]
+
 }
 
 
 const AuthForm: React.FC<AuthFormInterface> = (props) => {
-
-    const handleInput = () => {
-
-    }
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -33,21 +28,18 @@ const AuthForm: React.FC<AuthFormInterface> = (props) => {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
                 <Form className="space-y-6" >
-
                     {
-                        Object.entries(props)
-                            .map((item, index) => {
-                                if (item[0] === 'title') return ""
-                                return <Input
-                                    title={item[0]}
-                                    key={index}
-                                    id={item[1].id}
-                                    name={item[1].name}
-                                    type={item[1].type}
-                                    className={item[1]?.className}
-                                />
-                            }
-                            )
+                        props.data.map((item, index) => {
+                            return <Input
+                                title={item.title}
+                                key={index}
+                                id={item.id}
+                                name={item.name}
+                                type={item.type}
+                                className={item?.className}
+                            />
+                        }
+                        )
                     }
                     <Button title="Register" type="submit" />
 

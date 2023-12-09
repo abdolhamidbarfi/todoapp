@@ -9,3 +9,7 @@ export interface InnerLoginFormInterface {
     password: string
 }
 
+export interface InnerRegisterWithNumberInterface {
+    name: string,
+    phone: string
+}
