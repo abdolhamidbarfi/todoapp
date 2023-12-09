@@ -14,7 +14,7 @@ const Input: React.FC<InputInterface> = ({ id, name, type, title, className }) =
                     name={name}
                     type={type}
                 />
-                <ErrorMessage name={name}/>
+                <ErrorMessage name={name} className="text-red-500 text-sm" component={"span"}/>
             </div>
         </>
     )

@@ -6,8 +6,8 @@ import Input from "../input"
 interface AuthFormInterface {
     title: string,
     name?: InputInterface
-    email?: InputInterface
-    password?: InputInterface
+    email: InputInterface
+    password: InputInterface
 }
 
 
@@ -31,12 +31,9 @@ const AuthForm: React.FC<AuthFormInterface> = ({ title, email, password, name })
 
                 <Form className="space-y-6" >
 
-                    {name ? <Input id={name.id} name={name.name} title={name.title} type={name.type} /> : ""}
-
-                    {email ? <Input id={email.id} name={email.name} title={email.title} type={email.type} /> : ""}
-
-                    {password ? <Input id={password.id} name={password.name} title={password.title} type={password.type} /> : ""}
-                    
+                    {name && <Input id={name.id} name={name.name} title={name.title} type={name.type} className={name?.className}/>}
+                    {email && <Input id={email.id} name={email.name} title={email.title} type={email.type}  className={email?.className}/> }
+                    {password && <Input id={password.id} name={password.name} title={password.title} type={password.type} className={password?.className}/>}
                     <Button title="Register" type="submit" />
 
                 </Form>

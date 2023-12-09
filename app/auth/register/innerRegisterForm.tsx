@@ -1,7 +1,8 @@
 import AuthForm from "../../components/authForm"
 import { InnerRegisterFormInterface } from "../../contracts/auth"
+import { FormikProps } from 'formik'
 
-const InnerRegisterForm = (props: InnerRegisterFormInterface) => {
+const InnerRegisterForm = (props: FormikProps<InnerRegisterFormInterface>) => {
     return (
         <AuthForm
             title="Register and create Acount"

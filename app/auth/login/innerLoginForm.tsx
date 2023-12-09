@@ -1,7 +1,8 @@
 import AuthForm from "../../components/authForm"
 import { InnerLoginFormInterface } from "../../contracts/auth"
+import { FormikProps } from 'formik'
 
-const InnerLoginForm = (props: InnerLoginFormInterface) => {
+const InnerLoginForm = (props: FormikProps<InnerLoginFormInterface>) => {
     return (
         <AuthForm
             title="Login in your account"
