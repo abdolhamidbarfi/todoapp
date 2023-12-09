@@ -11,8 +11,11 @@ interface AuthFormInterface {
 }
 
 
-const AuthForm: React.FC<AuthFormInterface> = ({ title, email, password, name }) => {
+const AuthForm: React.FC<AuthFormInterface> = (props) => {
 
+    const handleInput = () => {
+
+    }
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -23,7 +26,7 @@ const AuthForm: React.FC<AuthFormInterface> = ({ title, email, password, name })
                     alt="Your Company"
                 />
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    {title}
+                    {props.title}
                 </h2>
             </div>
 
@@ -31,9 +34,21 @@ const AuthForm: React.FC<AuthFormInterface> = ({ title, email, password, name })
 
                 <Form className="space-y-6" >
 
-                    {name && <Input id={name.id} name={name.name} title={name.title} type={name.type} className={name?.className}/>}
-                    {email && <Input id={email.id} name={email.name} title={email.title} type={email.type}  className={email?.className}/> }
-                    {password && <Input id={password.id} name={password.name} title={password.title} type={password.type} className={password?.className}/>}
+                    {
+                        Object.entries(props)
+                            .map((item, index) => {
+                                if (item[0] === 'title') return ""
+                                return <Input
+                                    title={item[0]}
+                                    key={index}
+                                    id={item[1].id}
+                                    name={item[1].name}
+                                    type={item[1].type}
+                                    className={item[1]?.className}
+                                />
+                            }
+                            )
+                    }
                     <Button title="Register" type="submit" />
 
                 </Form>

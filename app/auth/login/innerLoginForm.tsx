@@ -23,6 +23,7 @@ const InnerLoginForm = (props: FormikProps<InnerLoginFormInterface>) => {
                     type: "password"
                 }
             }
+
         />
     )
 
