@@ -8,9 +8,9 @@ const callApi = () => {
     });
 
     instanceAxios.interceptors.request.use(
-        (value) => {
-
-            return value
+        (config) => {
+            config.withCredentials = true
+            return config
         },
         (error) => {throw error}
     )
