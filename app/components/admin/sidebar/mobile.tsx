@@ -5,14 +5,16 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { setShow } from "../../../store/slices/sidebar"
 import Link from "next/link"
+import ActiveLink from "../../../confige/activeLink"
 
 
 interface Props {
     navigation: object[]
     classNames: (...classes: string[]) => string
+    path: string
 }
 
-const SidebarMobile: React.FC<Props> = ({ navigation, classNames }) => {
+const SidebarMobile: React.FC<Props> = ({ navigation, classNames, path }) => {
 
     const sidebar = useAppSelector(props => props.showSidebarReducer)
     const dispatch = useAppDispatch()
@@ -73,26 +75,30 @@ const SidebarMobile: React.FC<Props> = ({ navigation, classNames }) => {
                             <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                 <nav className="space-y-1 px-2">
                                     {navigation.map((item: any, index) => (
-                                        <Link href={item.href} key={index}>
-                                            <a
-                                                key={item.name}
-                                                className={classNames(
-                                                    item.current
-                                                        ? 'bg-gray-900 text-white'
-                                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                                                )}
-                                            >
-                                                <item.icon
-                                                    className={classNames(
-                                                        item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
-                                                        'mr-4 flex-shrink-0 h-6 w-6'
-                                                    )}
-                                                    aria-hidden="true"
-                                                />
-                                                {item.name}
-                                            </a>
-                                        </Link>
+                                        <ActiveLink href={item.href} key={index}>
+                                            {
+                                                ({ active }) => (
+                                                    <a
+                                                        key={item.name}
+                                                        className={classNames(
+                                                            active
+                                                                ? 'bg-gray-900 text-white'
+                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                                                        )}
+                                                    >
+                                                        <item.icon
+                                                            className={classNames(
+                                                                active ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
+                                                                'mr-4 flex-shrink-0 h-6 w-6'
+                                                            )}
+                                                            aria-hidden="true"
+                                                        />
+                                                        {item.name}
+                                                    </a>
+                                                )
+                                            }
+                                        </ActiveLink>
                                     ))}
                                 </nav>
                             </div>

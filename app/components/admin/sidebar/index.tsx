@@ -1,25 +1,23 @@
+import { useRouter } from "next/router"
 import SidebarDesktop from "./desktop"
 import SidebarMobile from "./mobile"
 import {
-    CalendarIcon,
-    ChartBarIcon,
     FolderIcon,
     HomeIcon,
-    InboxIcon,
     UsersIcon,
-    XMarkIcon,
 } from '@heroicons/react/24/outline'
 
 interface Props {
-    title: string
 }
 
-const SideBar: React.FC<Props> = ({title}) => {
+const SideBar: React.FC<Props> = () => {
+
+    const router = useRouter()
 
     const navigation = [
-        { name: 'Dashboard', href: '/admin', icon: HomeIcon, current: title === "dashboard" },
-        { name: 'User', href: '/admin/user', icon: UsersIcon, current: title === "user" },
-        { name: 'Products', href: '/admin/products', icon: FolderIcon, current: title === "products" }
+        { name: 'Dashboard', href: '/admin', icon: HomeIcon },
+        { name: 'User', href: '/admin/user', icon: UsersIcon },
+        { name: 'Products', href: '/admin/products', icon: FolderIcon }
     ]
 
     function classNames(...classes: string[]) {
@@ -28,8 +26,8 @@ const SideBar: React.FC<Props> = ({title}) => {
 
     return (
         <>
-            <SidebarMobile navigation={navigation} classNames={classNames}/>
-            <SidebarDesktop navigation={navigation} classNames={classNames}/>
+            <SidebarMobile navigation={navigation} classNames={classNames} path={router.asPath} />
+            <SidebarDesktop navigation={navigation} classNames={classNames} path={router.asPath} />
         </>
     )
 }

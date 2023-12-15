@@ -10,6 +10,6 @@ const User : NextPageWiteLayout = () => {
     )
 }
 
-User.getLayout = page => <AdminLayout title="user">{page}</AdminLayout>
+User.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default User

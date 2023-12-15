@@ -10,6 +10,6 @@ const Products : NextPageWiteLayout = () => {
     )
 }
 
-Products.getLayout = page => <AdminLayout title="products">{page}</AdminLayout>
+Products.getLayout = page => <AdminLayout >{page}</AdminLayout>
 
 export default Products

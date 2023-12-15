@@ -9,10 +9,9 @@ import SideBar from "../../components/admin/sidebar"
 
 interface Props {
     children: ReactNode
-    title: string
 }
 
-const AdminLayout = ({ children , title }: Props) => {
+const AdminLayout = ({ children }: Props) => {
     const router = useRouter();
     const { user, error, loading } = isAuth();
 
@@ -27,7 +26,7 @@ const AdminLayout = ({ children , title }: Props) => {
     return (
         <>
             <div>
-                <SideBar  title={title}/>
+                <SideBar />
                 <div className="flex flex-col md:pr-64">
                     <NavigationBar />
                     {children}

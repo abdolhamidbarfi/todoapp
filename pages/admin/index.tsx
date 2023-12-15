@@ -9,6 +9,6 @@ const Admin : NextPageWiteLayout = () => {
     )
 }
 
-Admin.getLayout = page => <AdminLayout title="dashboard">{page}</AdminLayout>
+Admin.getLayout = page => <AdminLayout >{page}</AdminLayout>
 
 export default Admin
