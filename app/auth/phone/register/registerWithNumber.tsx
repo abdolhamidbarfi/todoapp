@@ -2,6 +2,8 @@ import { withFormik } from "formik";
 import { InnerRegisterWithNumberInterface } from "../../../contracts/auth";
 import InnerRegisterWithNumber from "./innerRegisterWithNumber";
 import * as yup from 'yup'
+import callApi from "../../../confige/callApi";
+import Router from "next/router";
 interface RegisterWithNubmerInterface {
 
 }
@@ -18,8 +20,13 @@ const RegisterWithNumber = withFormik<RegisterWithNubmerInterface, InnerRegister
             phone: ""
         }
     },
-    handleSubmit: (props) => {
-        console.log(props)
+    handleSubmit: async (values) => {
+        try {
+            const res = await callApi().post('/auth/register', values)
+            res.status === 201 && Router.push('/auth/phone/login')
+        } catch (err) {
+            console.log(err)
+        }
     },
     validationSchema: validationSchema
 })(InnerRegisterWithNumber)

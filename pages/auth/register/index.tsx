@@ -1,12 +1,15 @@
-import { NextPage } from "next";
 import RegisterForm from "../../../app/auth/register/registerForm";
+import GuestLayout from "../../../app/layouts/guest";
+import { NextPageWiteLayout } from "../../_app";
 
 
-const Login: NextPage = () => {
+const Register: NextPageWiteLayout = () => {
 
     return (
         <RegisterForm />
     )
 }
 
-export default Login
+Register.getLayout = page => <GuestLayout>{page}</GuestLayout>
+
+export default Register

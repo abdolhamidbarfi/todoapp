@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 // ...
+import loginToken from './slices/loginToken'
 
 export const store = configureStore({
-  reducer: {
-
+  reducer: {  
+    loginToken,
   }
 })
 

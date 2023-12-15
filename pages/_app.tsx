@@ -3,11 +3,25 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 
 import { store } from './../app/store';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Provider store={store}>
-    <Component {...pageProps} />
-  </Provider>
+export type NextPageWiteLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWiteLayout
+}
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+
+  const getLayout = Component?.getLayout ?? (page => page)
+
+  return (
+    <Provider store={store}>
+      {getLayout(<Component {...pageProps} />)}
+    </Provider>
+  )
 }
 
 export default MyApp

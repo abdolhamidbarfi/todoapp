@@ -12,9 +12,8 @@ const callApi = () => {
 
             return value
         },
-        (error) => {
-            return Promise.reject(error);
-        })
+        (error) => {throw error}
+    )
 
     instanceAxios.interceptors.response.use(
         (value) => {
@@ -22,7 +21,14 @@ const callApi = () => {
             return value
         },
         (error) => {
-            throw new ValidationErrors(error?.response?.data?.errors)
+            const res = error?.response
+            if (res) {
+                if (res.status === 422) {
+                    throw new ValidationErrors(res?.data?.errors)
+                }
+            }
+
+            throw error
         })
 
     return instanceAxios
