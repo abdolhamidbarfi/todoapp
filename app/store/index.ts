@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 // ...
 import loginToken from './slices/loginToken'
+import showSidebarReducer from './slices/sidebar'
 
 export const store = configureStore({
   reducer: {  
     loginToken,
+    showSidebarReducer
   }
 })
 

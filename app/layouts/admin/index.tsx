@@ -1,12 +1,41 @@
-import { NextPageWiteLayout } from "../../../pages/_app";
+import { useRouter } from "next/router"
+import { ReactNode, useState } from "react"
+
+import { isAuth } from "../../confige/isAuth"
+import NavigationBar from "../../components/admin/navigationBar"
+import SideBar from "../../components/admin/sidebar"
 
 
-const Admin : NextPageWiteLayout = () => {
+
+interface Props {
+    children: ReactNode
+    title: string
+}
+
+const AdminLayout = ({ children , title }: Props) => {
+    const router = useRouter();
+    const { user, error, loading } = isAuth();
+
+    if (loading) return <h1>Loading ...</h1>
+
+    if (error) {
+        // show error
+        router.push('/auth/login')
+        return <></>;
+    }
+
     return (
         <>
-        <h1>Admin Panel</h1>
+            <div>
+                <SideBar  title={title}/>
+                <div className="flex flex-col md:pr-64">
+                    <NavigationBar />
+                    {children}
+                </div>
+            </div>
         </>
     )
 }
 
-export default Admin
+
+export default AdminLayout;

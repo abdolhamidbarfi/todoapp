@@ -13,8 +13,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="text-red-500 text-2xl font-bold">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        <h1 className="text-blue-900 text-2xl font-bold">
+          Welcome to Next.js!
         </h1>
 
         <p className={styles.description}>
